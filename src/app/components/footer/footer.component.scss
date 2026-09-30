@@ -1,0 +1,108 @@
+.footer {
+  background-color: var(--color-text);  // fondo oscuro
+  color: #ccc;
+  padding: 48px 0 0;
+
+  // ---- Grid de columnas ----
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  a {
+    font-size: 14px;
+    color: #aaa;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  // ---- Redes sociales ----
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  &__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: #ccc;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: var(--color-primary);
+      color: #fff;
+    }
+  }
+
+  // ---- Línea inferior ----
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: #777;
+  }
+
+  &__copy {
+    margin-left: auto;
+    font-size: 13px;
+    color: #666;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .footer {
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    &__copy {
+      margin-left: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    &__bottom {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+}

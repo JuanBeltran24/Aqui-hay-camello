@@ -1,0 +1,364 @@
+// ============================================================
+// HEADER + BUSCADOR
+// ============================================================
+.buscar-header {
+  background: var(--color-bg);
+  padding: 32px 0 24px;
+  border-bottom: 1px solid var(--color-border);
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 20px;
+  }
+}
+
+.buscar-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 8px 12px;
+  max-width: 700px;
+  flex-wrap: wrap;
+
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 160px;
+
+    input {
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      color: var(--color-text);
+      width: 100%;
+      padding: 6px 0;
+
+      &::placeholder { color: #aaa; }
+      &:focus { outline: none; }
+    }
+
+    &--select {
+      position: relative;
+
+      select {
+        border: none;
+        background: transparent;
+        font-size: 14px;
+        color: var(--color-text);
+        appearance: none;
+        padding-right: 20px;
+        cursor: pointer;
+        width: 100%;
+
+        &:focus { outline: none; }
+      }
+
+      .select-arrow {
+        position: absolute;
+        right: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__btn {
+    flex-shrink: 0;
+    padding: 10px 24px;
+    white-space: nowrap;
+  }
+}
+
+// Filtros
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.filtro-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-border);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  &--active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+
+    svg { stroke: #fff; }
+  }
+}
+
+// ============================================================
+// MAPA
+// ============================================================
+.mapa-section {
+  background: var(--color-bg-gray);
+  padding: 24px 0;
+}
+
+.mapa {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: #e8f0e8;
+  border: 1px solid var(--color-border);
+
+  // Fondo del mapa simulado con gradiente
+  &__fondo {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, #d4e8d4 0%, #c8dfc8 40%, #b8d4b8 100%);
+  }
+
+  // Calles simuladas con CSS grid
+  &__calles {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.25) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+  }
+
+  // Ciudad label
+  &__ciudad {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.3);
+    pointer-events: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  // Marcadores
+  &__marcador {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__marcador-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border-radius: var(--border-radius);
+    padding: 6px 10px;
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  &__marcador-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ccc;
+    flex-shrink: 0;
+  }
+
+  &__marcador-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+
+    strong { font-weight: 700; color: var(--color-text); }
+    span   { color: var(--color-text-light); }
+  }
+
+  &__marcador-pin {
+    margin-top: -2px;
+  }
+}
+
+// ============================================================
+// TARJETAS DE PROFESIONALES
+// ============================================================
+.profesionales-section {
+  padding: 32px 0 64px;
+  background: var(--color-bg);
+}
+
+.profesionales-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.prof-card {
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  // Distancia/tiempo
+  &__meta {
+    font-size: 12px;
+    color: var(--color-text-light);
+    font-weight: 500;
+  }
+
+  // Header: avatar + nombre
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  &__nombre {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__especialidad {
+    font-size: 12px;
+    color: var(--color-text-light);
+    margin-top: 2px;
+  }
+
+  &__id-ok {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  // Rating
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+
+    strong { color: var(--color-text); }
+    span   { color: var(--color-text-light); font-size: 12px; }
+  }
+
+  // Detalle llegada / ubicación
+  &__detalle {
+    font-size: 12px;
+    color: var(--color-text-light);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  // Tarifa
+  &__tarifa {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .tarifa-label { color: var(--color-text-light); }
+  .tarifa-valor { color: var(--color-text); font-size: 15px; font-weight: 700; }
+
+  &__porque {
+    font-size: 12px;
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+
+  &__cta {
+    margin-top: auto;
+    padding: 9px;
+    font-size: 13px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+// ============================================================
+// RESPONSIVE
+// ============================================================
+@media (max-width: 900px) {
+  .profesionales-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .profesionales-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .buscar-bar {
+    flex-direction: column;
+    align-items: stretch;
+
+    &__btn { width: 100%; }
+  }
+
+  .mapa { height: 220px; }
+}

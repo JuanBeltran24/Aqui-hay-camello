@@ -1,0 +1,176 @@
+<!-- Navbar variante home -->
+<app-navbar variant="home" />
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+     <section class="hero">
+  <div class="hero__overlay"></div>
+  <div class="container hero__content">
+
+    <div class="hero__text">
+      <h1>
+        Encuentra al profesional<br>
+        que necesitas,<br>
+        <span class="hero__text--accent">cuando lo necesitas</span>
+      </h1>
+      <p class="hero__subtitle">
+        Conéctate con técnicos y profesionales verificados<br>
+        y agenda tu servicio de forma rápida y segura.
+      </p>
+
+      <!-- Barra de búsqueda -->
+      <div class="hero__search">
+        <div class="hero__search-field">
+          <svg class="hero__search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="¿Qué servicio necesitas? Plomería, Electricidad, Pintura..." />
+        </div>
+        <div class="hero__search-divider"></div>
+        <div class="hero__search-field">
+          <svg class="hero__search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <input type="text" placeholder="¿Dónde? Ciudad o barrio..." />
+        </div>
+        <button class="hero__search-btn" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+
+      <p class="hero__hint">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Para contactar y agendar, regístrate o inicia sesión.
+      </p>
+
+      <div class="hero__ctas">
+        <a routerLink="/registro" class="btn-primary">Regístrate gratis</a>
+        <a routerLink="/login" class="btn-outline-white">Iniciar sesión</a>
+      </div>
+    </div>
+
+    <!-- Badge verificación -->
+    <div class="hero__badge">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div>
+        <strong>Profesionales verificados</strong>
+        <span>Calificados y evaluados<br>por otros usuarios.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     CÓMO FUNCIONA
+     ============================================================ -->
+<section class="como-funciona" id="como-funciona">
+  <div class="container">
+    <h2 class="section-title">¿Cómo Funciona?</h2>
+    <div class="como-funciona__pasos">
+      @for (paso of pasos; track paso.numero) {
+        <div class="paso">
+          <div class="paso__icono">
+            <span class="paso__numero">{{ paso.numero }}</span>
+            @switch (paso.numero) {
+              @case (1) {
+                <!-- Ícono Regístrate -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+              }
+              @case (2) {
+                <!-- Ícono Busca -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              }
+              @case (3) {
+                <!-- Ícono Agenda -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              }
+              @case (4) {
+                <!-- Ícono Servicio -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              }
+            }
+          </div>
+          <h3 class="paso__titulo">{{ paso.titulo }}</h3>
+          <p class="paso__desc">{{ paso.descripcion }}</p>
+        </div>
+        @if (paso.numero < 4) {
+          <div class="paso__flecha" aria-hidden="true">→</div>
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PARA CLIENTES / PARA PROFESIONALES
+     ============================================================ -->
+<section class="audiencias">
+  <div class="container audiencias__grid">
+
+    <!-- Para Clientes -->
+    <div class="audiencias__card audiencias__card--cliente">
+      <div class="audiencias__card-img">
+        <div class="audiencias__img-placeholder audiencias__img-placeholder--cliente">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+      </div>
+      <div class="audiencias__card-body">
+        <h3>Para Clientes</h3>
+        <p><strong>Encuentra soluciones con confianza</strong></p>
+        <ul>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Accede a profesionales verificados
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Opiniones reales de usuarios
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Paga seguro dentro del portal
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Soporte y atención personalizada
+          </li>
+        </ul>
+        <a routerLink="/registro" class="btn-primary">Regístrate como cliente</a>
+      </div>
+    </div>
+
+    <!-- Para Profesionales -->
+    <div class="audiencias__card audiencias__card--profesional">
+      <div class="audiencias__card-img">
+        <div class="audiencias__img-placeholder audiencias__img-placeholder--profesional">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+      </div>
+      <div class="audiencias__card-body">
+        <h3>Para Profesionales</h3>
+        <p><strong>Haz crecer tu negocio con nosotros</strong></p>
+        <ul>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Recibe notificaciones de los clientes en tu zona
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Gestiona tu agenda de servicios
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Aumenta tu reputación y visibilidad
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Pagos seguros y oportunos
+          </li>
+        </ul>
+        <a routerLink="/registro" class="btn-primary">Regístrate como profesional</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<app-footer />

@@ -1,0 +1,52 @@
+<header class="navbar">
+  <div class="container navbar__inner">
+
+    <!-- Logo -->
+    <!-- Logo -->
+<a routerLink="/" class="navbar__logo">
+  <img class="navbar__logo-img" src="/img/logo.png" alt="Aquí hay Camello">
+
+  <div class="navbar__logo-text">
+    <span class="logo-top">Aquí hay</span>
+    <span class="logo-bottom">Camello</span>
+  </div>
+</a>
+
+    <!-- Navegación home -->
+    <nav class="navbar__nav" *ngIf="variant === 'home'">
+      <a routerLink="/" class="navbar__link">Inicio</a>
+      <a routerLink="/buscar" class="navbar__link">Buscar Servicios</a>
+      <a routerLink="/" fragment="como-funciona" class="navbar__link">¿Cómo funciona?</a>
+      <a routerLink="/" class="navbar__link">Ayuda</a>
+    </nav>
+
+    <!-- Navegación login -->
+    <nav class="navbar__nav" *ngIf="variant === 'login'">
+      <a routerLink="/" class="navbar__link">Inicio</a>
+      <a routerLink="/registro" class="navbar__link">¿Ya tienes cuenta?</a>
+    </nav>
+
+    <!-- Navegación registro -->
+    <nav class="navbar__nav" *ngIf="variant === 'register'">
+      <a routerLink="/" class="navbar__link">Inicio</a>
+      <a routerLink="/login" class="navbar__link">¿No tienes cuenta?</a>
+    </nav>
+
+    <!-- Acciones home -->
+    <div class="navbar__actions" *ngIf="variant === 'home'">
+      <a routerLink="/login" class="btn-outline">Iniciar Sesión</a>
+      <a routerLink="/registro" class="btn-primary">Regístrate</a>
+    </div>
+
+    <!-- Acción login -->
+    <div class="navbar__actions" *ngIf="variant === 'login'">
+      <a routerLink="/login" class="btn-primary">Iniciar sesión</a>
+    </div>
+
+    <!-- Acción registro -->
+    <div class="navbar__actions" *ngIf="variant === 'register'">
+      <a routerLink="/registro" class="btn-primary">Regístrate</a>
+    </div>
+
+  </div>
+</header>

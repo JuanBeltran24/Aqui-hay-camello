@@ -1,0 +1,383 @@
+// ============================================================
+// HERO
+// Foto: public/img/hero.png  ->  url('/img/hero.png')
+// ============================================================
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: url('/img/hero.png') center / cover no-repeat, #1a3a30;
+
+  // Navbar flotante sobre la foto
+  &__nav {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    z-index: 3;
+    display: block;
+  }
+
+  // Más oscuro a la izquierda, donde va el texto
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    padding-top: 140px; // espacio para el navbar flotante
+    padding-bottom: 100px;
+  }
+
+  &__text {
+    max-width: 640px;
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    &--accent {
+      color: var(--color-accent);
+    }
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  // Barra de búsqueda con botón verde redondeado
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    max-width: 600px;
+  }
+
+  &__search-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    padding: 0 12px;
+
+    input {
+      border: none;
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      color: var(--color-text);
+      width: 100%;
+      padding: 12px 0;
+
+      &::placeholder { color: #999; }
+      &:focus { outline: none; }
+    }
+
+    &:focus-within {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+      border-radius: 8px;
+    }
+  }
+
+  &__search-icon {
+    flex-shrink: 0;
+  }
+
+  &__search-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--color-border);
+  }
+
+  &__search-btn {
+    flex-shrink: 0;
+    width: 52px;
+    height: 44px;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+
+    // HOVER
+    &:hover {
+      background: var(--color-primary-dark);
+      transform: scale(1.05);
+    }
+
+    &:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+  }
+
+  // Hint
+  &__hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    margin: 12px 0 20px;
+  }
+
+  // CTAs con HOVER (solo dentro del hero)
+  &__ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    .btn-primary,
+    .btn-outline-white {
+      transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-outline-white:hover {
+      background: #fff;
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+  }
+
+  // Badge verificación: abajo a la derecha, con HOVER
+  &__badge {
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 290px;
+    padding: 12px 18px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.25s, box-shadow 0.25s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    strong {
+      display: block;
+      font-size: 14px;
+      color: var(--color-text);
+    }
+
+    span {
+      font-size: 12px;
+      color: var(--color-text-light);
+      line-height: 1.4;
+    }
+  }
+}
+
+// ============================================================
+// CÓMO FUNCIONA
+// ============================================================
+.como-funciona {
+  padding: 80px 0;
+  background: var(--color-bg);
+
+  &__pasos {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+}
+
+.paso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 200px;
+  padding: 24px 16px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+
+  &__icono {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(26, 107, 90, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  &__numero {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: var(--color-text-light);
+    line-height: 1.5;
+  }
+
+  &__flecha {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: var(--color-border);
+    padding: 0 8px;
+    padding-top: 36px;
+    align-self: flex-start;
+  }
+}
+
+// ============================================================
+// PARA CLIENTES / PROFESIONALES
+// ============================================================
+.audiencias {
+  padding: 80px 0;
+  background: var(--color-bg-gray);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__img-placeholder {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--cliente {
+      background: linear-gradient(135deg, #2a8a72, #1a6b5a);
+    }
+
+    &--profesional {
+      background: linear-gradient(135deg, #1a4a3a, #1a6b5a);
+    }
+  }
+
+  &__card-body {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--color-text-light);
+    }
+
+    .btn-primary {
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+  }
+}
+
+// ============================================================
+// RESPONSIVE
+// ============================================================
+@media (max-width: 900px) {
+  .audiencias__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    &__text h1 { font-size: 1.8rem; }
+    &__content { padding-top: 110px; padding-bottom: 32px; }
+    &__search { flex-direction: column; align-items: stretch; }
+    &__search-divider { width: 100%; height: 1px; }
+    &__search-btn { width: 100%; }
+    &__badge { position: static; margin: 0 16px 24px; align-self: flex-start; }
+  }
+
+  .como-funciona__pasos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .paso__flecha { display: none; }
+}
+
+// Respeta a quienes desactivan animaciones en su sistema
+@media (prefers-reduced-motion: reduce) {
+  .hero * { transition: none !important; }
+}

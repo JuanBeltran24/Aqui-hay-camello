@@ -1,0 +1,202 @@
+<!-- Navbar variante home -->
+<app-navbar variant="home" />
+
+<main class="buscar-page">
+
+  <!-- ============================================================
+       ENCABEZADO + BUSCADOR
+       ============================================================ -->
+  <section class="buscar-header">
+    <div class="container">
+      <h1>Resultados de profesionales cercanos - {{ area }}</h1>
+
+      <div class="buscar-bar">
+        <!-- Servicio -->
+        <div class="buscar-bar__field">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            placeholder="Selección de Servicio"
+            [(ngModel)]="servicio"
+            name="servicio"
+            aria-label="Tipo de servicio"
+          />
+        </div>
+
+        <!-- Área -->
+        <div class="buscar-bar__field buscar-bar__field--select">
+          <select [(ngModel)]="area" name="area" aria-label="Seleccionar área">
+            @for (a of areas; track a) {
+              <option [value]="a">{{ a }}</option>
+            }
+          </select>
+          <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+
+        <button class="btn-primary buscar-bar__btn" (click)="buscar()">Consultar</button>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filtros">
+        <button
+          class="filtro-btn"
+          [class.filtro-btn--active]="filtroActivo === 'cercanos'"
+          (click)="setFiltro('cercanos')"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Más cercanos
+        </button>
+        <button
+          class="filtro-btn"
+          [class.filtro-btn--active]="filtroActivo === 'reputacion'"
+          (click)="setFiltro('reputacion')"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="1">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          Mejor reputación
+        </button>
+        <button
+          class="filtro-btn"
+          [class.filtro-btn--active]="filtroActivo === 'verificados'"
+          (click)="setFiltro('verificados')"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          100% Verificados
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAPA
+       ============================================================ -->
+  <section class="mapa-section">
+    <div class="container">
+      <div class="mapa">
+        <!-- Fondo del mapa (simulado con gradiente) -->
+        <div class="mapa__fondo"></div>
+
+        <!-- Grid de calles simuladas -->
+        <div class="mapa__calles" aria-hidden="true"></div>
+
+        <!-- Marcadores de profesionales en el mapa -->
+        @for (m of marcadores; track m.nombre) {
+          <div
+            class="mapa__marcador"
+            [style.top.%]="m.top"
+            [style.left.%]="m.left"
+          >
+            <div class="mapa__marcador-card">
+              <div class="mapa__marcador-avatar"></div>
+              <div class="mapa__marcador-info">
+                <strong>{{ m.nombre }}</strong>
+                <span>{{ m.subtitulo }}</span>
+              </div>
+            </div>
+            <div class="mapa__marcador-pin">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)" stroke="white" stroke-width="1">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3" fill="white"/>
+              </svg>
+            </div>
+          </div>
+        }
+
+        <!-- Etiqueta ciudad central -->
+        <div class="mapa__ciudad">Neiva</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TARJETAS DE PROFESIONALES
+       ============================================================ -->
+  <section class="profesionales-section">
+    <div class="container">
+      <div class="profesionales-grid">
+
+        @for (p of profesionales; track p.id) {
+          <article class="prof-card">
+
+            <!-- Cabecera: distancia + tiempo -->
+            <div class="prof-card__meta">
+              <span>{{ p.distancia }} · {{ p.tiempo }}</span>
+            </div>
+
+            <!-- Nombre y especialidad -->
+            <div class="prof-card__header">
+              <div class="prof-card__avatar" [style.background]="p.color">
+                {{ p.foto }}
+              </div>
+              <div>
+                <h3 class="prof-card__nombre">
+                  {{ p.nombre }}
+                  <span class="prof-card__badge" *ngIf="p.verificado" title="ID Verificada, Antecedentes OK">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-primary)" stroke="none">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  </span>
+                </h3>
+                <p class="prof-card__especialidad">{{ p.especialidad }} · {{ p.tipo }}</p>
+              </div>
+            </div>
+
+            @if (p.verificado) {
+              <p class="prof-card__id-ok">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                ID Verificada · Antecedentes OK
+              </p>
+            }
+
+            <!-- Rating -->
+            <div class="prof-card__rating">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="1">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <strong>{{ p.rating }}</strong>
+              <span>({{ p.opiniones }} opciones reales)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--color-primary)" stroke="none">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+
+            <!-- Llegada y ubicación -->
+            <div class="prof-card__detalle">
+              <p>Llega en ~ {{ p.llegaEn }}</p>
+              <p>Ubicación: {{ p.ubicacion }}</p>
+            </div>
+
+            <!-- Tarifa -->
+            <div class="prof-card__tarifa">
+              <span class="tarifa-label">Tarifas visita:</span>
+              <strong class="tarifa-valor">${{ p.tarifa | number }}</strong>
+            </div>
+            <p class="prof-card__porque">Por que {{ p.porQueEl }}</p>
+
+            <!-- CTA -->
+            <button class="btn-outline btn-full prof-card__cta" (click)="verPerfil(p.id)">
+              Ver perfil completo
+            </button>
+
+          </article>
+        }
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<app-footer />

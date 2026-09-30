@@ -1,0 +1,208 @@
+.login-page {
+  min-height: calc(100vh - 72px);
+  background: var(--color-bg-gray);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 40px;
+  width: 100%;
+  max-width: 520px;
+
+  // ---- Encabezado ----
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    gap: 16px;
+  }
+
+  &__header-text {
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--color-text-light);
+      line-height: 1.5;
+      max-width: 280px;
+    }
+  }
+
+  &__header-icon {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  // ---- Enlace registro ----
+  &__register {
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-text-light);
+    margin-top: 20px;
+
+    a {
+      color: var(--color-primary);
+      font-weight: 600;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
+
+// ---- Formulario ----
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 0 12px;
+  background: #fff;
+  transition: border-color 0.2s;
+
+  &:focus-within {
+    border-color: var(--color-primary);
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 8px;
+    font-size: 14px;
+    color: var(--color-text);
+
+    &::placeholder { color: #bbb; }
+  }
+}
+
+.input-icon {
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+.input-toggle {
+  background: none;
+  border: none;
+  padding: 0 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #aaa;
+
+  &:hover { color: var(--color-primary); }
+}
+
+// ---- Olvidaste contraseña ----
+.login-form__forgot {
+  font-size: 13px;
+  color: var(--color-primary);
+  font-weight: 600;
+  align-self: flex-end;
+
+  &:hover { text-decoration: underline; }
+}
+
+// ---- Botón ----
+.btn-full {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+// ---- Divisor ----
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #bbb;
+  font-size: 13px;
+
+  &::before, &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+}
+
+// ---- Social login ----
+.social-login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+// ---- Seguridad ----
+.form-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+// ---- Responsive ----
+@media (max-width: 480px) {
+  .login-card {
+    padding: 28px 20px;
+
+    &__header-icon { display: none; }
+  }
+
+  .social-login {
+    grid-template-columns: 1fr;
+  }
+}
